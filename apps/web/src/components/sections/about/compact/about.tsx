@@ -24,7 +24,7 @@ function About() {
               </p>
               <div className="flex gap-2">
                 <Button asChild variant={"outline"}>
-                  <a href="resume.pdf" target="_blank">
+                  <a href="/resume.pdf" target="_blank">
                     View Resume <Icons.arrowUpRight className="ml-2 size-5" />
                   </a>
                 </Button>
