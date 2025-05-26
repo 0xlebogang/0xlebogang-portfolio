@@ -7,7 +7,7 @@ import {
   Header,
   Hero,
   Projects,
-  Skills,
+  Stack,
 } from "@/components/sections";
 import SmoothScroll from "@/components/smooth-scroll";
 
@@ -19,7 +19,7 @@ export default function Home() {
         <main className="flex-1">
           <Hero />
           <About />
-          <Skills />
+          <Stack />
           <Projects />
           <Experience />
           <Contact />

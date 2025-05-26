@@ -1,4 +1,4 @@
-import type { Skill } from "@/types/skill";
+import type { Stack } from "@/types/stack";
 import {
   MorphingDialog as Dialog,
   MorphingDialogClose as DialogClose,
@@ -18,19 +18,19 @@ import remarkMath from "remark-math";
 import { cn } from "@repo/ui";
 import { Icons } from "@repo/ui/icons";
 
-interface SkillCardProps extends Skill {
+interface StackCardProps extends Stack {
   index: number;
   className?: string;
 }
 
 // todo: use text reveal for name and description
 // todo: use motion-primitives text-reveal
-export default function SkillCard({
+export default function StackCard({
   name,
   description,
   thumbnail,
   className,
-}: SkillCardProps) {
+}: StackCardProps) {
   return (
     <Dialog
       transition={{
@@ -48,11 +48,6 @@ export default function SkillCard({
           className,
         )}
       >
-        {/* <DialogImage
-          src="/eb-27-lamp-edouard-wilfrid-buquet.jpg"
-          alt="A desk lamp designed by Edouard Wilfrid Buquet in 1925. It features a double-arm design and is made from nickel-plated brass, aluminium and varnished wood."
-          className="h-48 w-full object-cover"
-        /> */}
         <div className="flex grow flex-col items-end justify-between gap-4 p-6">
           <button
             type="button"
@@ -63,9 +58,9 @@ export default function SkillCard({
           </button>
           <div className="flex w-full flex-col gap-2">
             <DialogImage
-              src={thumbnail ?? "/placeholder.svg"}
-              alt={`An image which depicts the skill (${name})`}
-              className="h-12 w-12 object-cover object-top"
+              src={thumbnail?.src ?? "/placeholder.svg"}
+              alt={`An image which depicts the tool (${thumbnail?.alt ?? name})`}
+              className="h-8 w-8 object-cover object-top"
               style={{
                 borderRadius: "4px",
               }}
@@ -84,10 +79,10 @@ export default function SkillCard({
           style={{
             borderRadius: "24px",
           }}
-          className="pointer-events-auto relative flex h-auto w-full flex-col overflow-hidden border border-zinc-950/10 bg-white sm:w-[500px] dark:border-zinc-50/10 dark:bg-zinc-900"
+          className="pointer-events-auto relative flex h-auto w-full flex-col overflow-hidden border border-zinc-950/10 bg-white p-4 sm:w-[500px] dark:border-zinc-50/10 dark:bg-zinc-900"
         >
           <DialogImage
-            src={thumbnail ?? "/placeholder.svg"}
+            src={thumbnail?.src ?? "/placeholder.svg"}
             alt={`An image which depicts the skill (${name})`}
             className="h-full w-full"
           />
@@ -95,9 +90,6 @@ export default function SkillCard({
             <DialogTitle className="text-3xl leading-8 font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
               {name}
             </DialogTitle>
-            {/* <DialogSubtitle className="text-zinc-700 dark:text-zinc-400">
-              {description}
-            </DialogSubtitle> */}
             <DialogDescription
               className="text-md text-muted-foreground text-zinc-700 dark:text-zinc-400"
               disableLayoutAnimation

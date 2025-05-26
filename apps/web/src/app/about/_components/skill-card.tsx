@@ -1,4 +1,4 @@
-import type { Skill } from "@/types/skill";
+import type { Skill } from "@/types/stack";
 import {
   MorphingDialog as Dialog,
   MorphingDialogClose as DialogClose,

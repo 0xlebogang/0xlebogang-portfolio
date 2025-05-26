@@ -9,7 +9,7 @@ import { contact } from "@/components/sections/contact/config";
 import ContactForm from "@/components/sections/contact/cozy/contact-form";
 import { experiences } from "@/components/sections/experience/config";
 import ExperienceCard from "@/components/sections/experience/cozy/experience-card";
-import { skills } from "@/components/sections/skills/config";
+import { skills } from "@/components/sections/stack/config";
 import { technologies } from "@/components/sections/technologies/config";
 import TechnologyCard from "@/components/sections/technologies/modern/technology-card";
 import { exampleImages } from "@/lib/example-images";

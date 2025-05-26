@@ -1,8 +1,8 @@
 import React from "react";
 import MotionWrap from "@/components/motion-wrap";
-import { skills } from "@/components/sections/skills/config";
+import { content } from "@/components/sections/stack/config";
 
-import SkillCard from "./skill-card";
+import SkillCard from "./stack-card";
 
 function Skills() {
   return (
@@ -11,7 +11,7 @@ function Skills() {
         <div className="grid gap-10 lg:grid-cols-2">
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl/none">
-              My Skills
+              My Stack
             </h2>
             <p className="text-gray-500 dark:text-gray-400">
               Here are some of my skills where I&apos;ve turned knowledge into
@@ -19,12 +19,12 @@ function Skills() {
             </p>
           </div>
           <div className="grid gap-4">
-            {skills.map((skill, index) => (
+            {content.stacks.map((stack, index) => (
               <SkillCard
                 key={`skill_${index}`}
-                name={skill.name}
-                description={skill.description}
-                thumbnail={skill.thumbnail}
+                name={stack.name}
+                description={stack.description}
+                thumbnail={stack.thumbnail}
               />
             ))}
           </div>
