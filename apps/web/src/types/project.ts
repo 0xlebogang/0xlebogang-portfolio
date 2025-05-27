@@ -5,5 +5,15 @@ export interface Project {
   website?: string;
   github?: string;
   tags?: { label: string }[];
-  // thumbnail: string;
+  // Todo: Implement a project thumbnail
+  // thumbnail?: {
+  //   src: string;
+  //   alt: string;
+  // };
+}
+
+export interface ProjectsPage {
+  title: string;
+  description: string;
+  projects: Project[];
 }
