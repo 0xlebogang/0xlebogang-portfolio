@@ -1,5 +1,5 @@
 import About from "./about/compact/about";
-import Contact from "./contact/compact/contact";
+import Contact from "./contact/cozy/contact";
 import Experience from "./experience/modern/experience";
 import Footer from "./footer/modern/footer";
 import Header from "./header/compact/header";
