@@ -10,7 +10,7 @@ const metadata: Metadata = {
     title: "Lebogang Phoshoko",
     description:
       "Portfolio of aspiring entrepreneur & self-taught software developer Lebogang Phoshoko.",
-    url: "https://lebophosh.tech",
+    url: "https://lebophosh.vercel.app",
     keywords: [
       "software development",
       "Geekulcha",

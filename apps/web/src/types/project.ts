@@ -1,15 +1,13 @@
 export interface Project {
+  url: string;
   title: string;
   description?: string;
   date?: Date | string;
   website?: string;
   github?: string;
   tags?: { label: string }[];
-  // Todo: Implement a project thumbnail
-  // thumbnail?: {
-  //   src: string;
-  //   alt: string;
-  // };
+  slugs: string[];
+  thumbnail: string;
 }
 
 export interface ProjectsPage {
