@@ -23,7 +23,7 @@ export function UserAvatar({
   className,
   ...props
 }: UserAvatarProps & ComponentProps<typeof Avatar>) {
-  const name = user?.name || user?.email;
+  const name = user?.name ?? user?.email;
   const src = user?.image;
 
   return (

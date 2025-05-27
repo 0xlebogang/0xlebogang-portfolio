@@ -64,17 +64,16 @@ export default function ProjectsPage(): React.ReactElement {
         id="hero"
       >
         <div className="flex flex-col items-center md:max-w-7xl">
-          {/* todo: re-add delay of 0.2seconds */}
           <TextReveal
             as="h1"
             className="leading-wide tracking-relaxed text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
           >
             My Projects
           </TextReveal>
-
           <Line className={"mt-16"} />
         </div>
       </section>
+
       <section className="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-2 2xl:grid-cols-3">
         {projects.map((project, index) => (
           <ProjectCard
@@ -84,6 +83,9 @@ export default function ProjectsPage(): React.ReactElement {
             key={`project_${index}`}
             tags={project.data.tags}
             thumbnail={`/images/projects/${project.slugs[0]}/cover.jpg`}
+            // Additional props to silence type errors.
+            url={""}
+            slugs={[]}
           />
         ))}
       </section>
