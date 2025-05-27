@@ -1,106 +1,94 @@
-<p align="center">
-  <img alt="" src="/.github/assets/cover.png" />
-</p>
+# 🚀 Modern Portfolio Website
 
-<h1 align="center">
-  shadcn-portfolio
-</h1>
+[![CI Status](https://img.shields.io/github/actions/workflow/status/0xlebogang/0xlebogang-portfolio/ci.yml?branch=main&label=CI&logo=github)](https://github.com/0xlebogang/portfolio/actions)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-14.0.0-black?logo=next.js)](https://nextjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.3.0-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![License](https://img.shields.io/github/license/0xlebogang/0xlebogang-portfolio)](LICENSE)
 
-<p align="center">
-  <a aria-label="Framework" href="https://nextjs.org">
-    <img alt="" src="https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=Next.js&labelColor=000">
-  </a>
-  <img alt="" src="https://img.shields.io/github/languages/top/techwithanirudh/shadcn-portfolio?style=for-the-badge&labelColor=000">
-  <a aria-label="License" href="https://github.com/techwithanirudh/shadcn-portfolio/blob/main/LICENSE">
-    <img alt="" src="https://img.shields.io/github/license/techwithanirudh/shadcn-portfolio?style=for-the-badge&labelColor=000">
-  </a>
-</p>
+## ✨ Overview
 
-<p align="center"><i>
-  ⚡ This version is re-structured using TurboRepo.<br />
-  To use the old version, check out the <a href="https://github.com/techwithanirudh/shadcn-portfolio/tree/tailwind-v4">tailwind-v4 branch</a>.
-</i></p>
+A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS. This project showcases my skills, projects, and professional journey in an elegant and interactive way.
 
-## 📋 Table of Contents
+## 🛠️ Tech Stack
 
-1. 🤖 [Introduction](#introduction)
-2. 🚀 [Tech Stack](#tech-stack)
-3. ✨ [Features](#features)
-4. 📚 [Getting Started](#getting-started)
-5. ❤️ [Credits](#credits)
+- **Frontend**: [Next.js](https://nextjs.org/), [React](https://reactjs.org/), [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/), [Shadcn UI](https://ui.shadcn.com/)
+- **Content**: [MDX](https://mdxjs.com/), [Fumadocs](https://fumadocs.vercel.app/)
+- **Package Management**: [pnpm](https://pnpm.io/)
+- **Monorepo Tools**: [Turborepo](https://turbo.build/repo)
+- **Deployment**: [Vercel](https://vercel.com/)
 
-## <a name="introduction">🤖 Introduction</a>
+## 🚀 Features
 
-This is a portfolio template built using Next.JS, Framer Motion and Shadcn/UI.
+- 📱 Fully responsive design
+- 🌓 Dark/light mode
+- ⚡ Fast page loads with Next.js
+- 📝 MDX for rich content creation
+- 🧩 Component-based architecture
+- 📊 Project showcase
 
-## <a name="tech-stack">🚀 Tech Stack</a>
+## 🏃‍♂️ Getting Started
 
-- Next.js
-- shadcn/ui
-- Framer Motion
-- Tailwind CSS
+### Prerequisites
 
-## <a name="features">✨ Features</a>
+- Node.js (v22.11.0 or higher)
+- pnpm (v10.9.0)
 
-- ⚡️ Next.js 15 with App Router
-- 📝 Blog
-- 🎨 Tailwind CSS - for styling
-- 🌈 Shadcn UI - accessible UI components
-- 📱 Responsive design
-- 🌗 Light / Dark mode
-- 📈 SEO optimized with meta tags
-- 📊 Sentry (setup required)
-- 🎨 Animations - using Framer Motion
-- 🔨 Husky & Lint Staged - lint and format code before committing
-- 💄 Prettier - code formatting
-- 📞 Contact form (setup required)
-- 🛡️ Cloudflare Turnstile (setup required)
+### Installation
 
-## <a name="getting-started">📚 Getting Started</a>
+```bash
+# Clone the repository
+git clone https://github.com/0xlebogang/0xlebogang-portfolio.git
+cd portfolio
 
-Please refer to the [getting started guide](./GETTING_STARTED.md) for information on how to configure and run the
-portfolio template.
+# Install dependencies
+pnpm install
 
-## <a name="credits">❤️ Credits</a>
+# Start development server
+pnpm dev
+```
 
-This project wouldn’t be possible without the following open-source projects:
+## 📂 Project Structure
 
-- MDX Rendering and Logic from [fumadocs](https://github.com/fuma-nama/fumadocs)
-- MDX Data from [content-collections](https://www.content-collections.dev/)
-- UI from [shadcn/ui](https://ui.shadcn.com/)
-- Smooth Scrolling from [Lenis](https://github.com/darkroomengineering/lenis)
-- Turnstile from [react-turnstile](https://github.com/marsidev/react-turnstile)
+```
+├── apps
+│   └── web                   # Main Next.js application
+│       ├── public            # Static assets
+│       └── src               # Source code
+│           ├── app           # Next.js app router
+│           ├── components    # Reusable components
+│           └── content       # MDX content for projects and pages
+├── packages                  # Shared packages
+│   ├── db                    # Database package
+│   ├── ui                    # UI component library
+│   └── ...                   # Other shared
+```
 
-This project has been inspired by the following websites:
+## 🧹 Scripts
 
-- [honghong.me](https://honghong.me/)
-- [cuberto.com](https://cuberto.com/)
-- [fuma-nama.vercel.app](https://fuma-nama.vercel.app/)
-- [fumadocs.vercel.app](https://fumadocs.vercel.app/)
-- [dennissnellenberg.com](https://dennissnellenberg.com/)
-- [bychristinakosik.com](https://www.bychristinakosik.com/)
-- [danmachado.com](https://www.danmachado.com/)
-- [ui.aceternity.com](https://ui.aceternity.com/)
-- [blog.olivierlarose.com](https://blog.olivierlarose.com/)
-- [props.studiolumio.com](https://props.studiolumio.com/)
-- [dennissnellenberg.com](https://dennissnellenberg.com/)
-- [davidhaz.com](https://davidhaz.com/)
-- [fellipeutaka.vercel.app](https://fellipeutaka.vercel.app/)
-- [a-bd.me](https://www.a-bd.me/)
-- [luge.cool](https://luge.cool/)
-- [nahelmoussi.com](https://nahelmoussi.com/)
-- [boyntonyards.com](https://boyntonyards.com/)
-- [ped.ro](https://ped.ro/)
-- [leerob.io](https://leerob.io/)
-- [portfolio hero challenge](https://x.com/thereal_apk/status/1829874339254321290)
-- [minimal homepage exploration](https://x.com/FonsMans/status/1829510586843152791)
-- [suxmaiya.framer.website](https://x.com/SumaiyaSsa/status/1828451225714471209)
-- [jrhu.me](https://jrhu.me/)
-- [github.com/ismamz/next-transition-router](https://github.com/ismamz/next-transition-router)
-- [jorisbrianti.fr](https://jorisbrianti.fr/)
-- [athos-dark.framer.ai](https://athos-dark.framer.ai/)
-- [fancycomponents.dev](https://www.fancycomponents.dev/)
+- `pnpm dev` - Start the development server
+- `pnpm build` - Build the application for production
+- `pnpm lint` - Run ESLint to check code quality
+- `pnpm format` - Run Prettier to check formatting
+- `pnpm format:fix` - Fix formatting issues
+- `pnpm clean` - Clean up node_modules
 
-and more
+## 👨‍💻 Author
 
-#
+**Lebogang**
+
+- Website: [lebophosh.com](https://lebophosh.vercel.app)
+- GitHub: [@0xlebogang](https://github.com/0xlebogang)
+- LinkedIn: [Lebogang Phoshoko](https://linkedin.com/in/phoshokoml)
+
+## 🙏 Acknowledgments
+
+- [Shadcn UI](https://ui.shadcn.com/) for the beautiful UI components
+- [Fumadocs](https://fumadocs.vercel.app/) for the documentation framework
+- [@techwithanirudh](https://github.com/techwithanirudh) for the amazing portfolio template!
+- All open source contributors who make their work available to the community
+
+---
+
+<p align='center'>Built with ❤️ by Lebogang</p>
