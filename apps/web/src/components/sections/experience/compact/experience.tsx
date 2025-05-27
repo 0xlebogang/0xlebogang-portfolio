@@ -1,6 +1,6 @@
 import React from "react";
 import MotionWrap from "@/components/motion-wrap";
-import { experiences } from "@/components/sections/experience/config";
+import { content } from "@/components/sections/experience/config";
 
 import ExperienceCard from "./experience-card";
 
@@ -19,7 +19,7 @@ function Experiences() {
             </p>
           </div>
           <div className="grid gap-4">
-            {experiences.map((experience, index) => (
+            {content.experiences.map((experience, index) => (
               <ExperienceCard
                 key={`experience_${index}`}
                 name={experience.name}
