@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import SkillCard from "@/app/about/_components/stack-card";
 import Link from "@/components/fancy/link";
 import TextReveal from "@/components/fancy/text-reveal";
@@ -18,7 +18,6 @@ import { Separator } from "@repo/ui/separator";
 export default function About() {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const testimonialsRef = useRef<HTMLDivElement>(null);
 
   return (
     <main className="flex-1 px-4 sm:px-8 md:px-12 lg:px-16 2xl:px-24">
