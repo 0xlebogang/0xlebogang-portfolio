@@ -6,13 +6,13 @@ const content: StackContent = {
     "Here are the technologies I use most for development. I also have a demonstrable ability to learn new technologies quickly and can adapt to different tech stacks.",
   stacks: [
     {
-      name: "Next.js",
+      name: "TypeScript",
       thumbnail: {
-        src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
-        alt: "Next.js Icon",
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+        alt: "TypeScript Icon",
       },
       description:
-        "I've primarily used the Next.js framework for most of my projects, leveraging its powerful server-side rendering and static site generation capabilities. The framework provides an excellent foundation for building modern, high-performance web applications. I would really like to see what bigger projects that use Next.js look like.",
+        "I've primarily used TypeScript for most of my projects, mostly web projects for both backend and frontend. I am most familiar with Next.js (the React framework), Express, and Hono (web frameworks that allow you to build APIs). Currently, I'm learning how to use Nest.js to leverage its ease of use in microservices.",
     },
     {
       name: "Python",
