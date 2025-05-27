@@ -8,8 +8,6 @@ import { contact } from "@/components/sections/contact/config";
 import { content as experienceContent } from "@/components/sections/experience/config";
 import ExperienceCard from "@/components/sections/experience/cozy/experience-card";
 import { content as stackContent } from "@/components/sections/stack/config";
-import { technologies } from "@/components/sections/technologies/config";
-import TechnologyCard from "@/components/sections/technologies/modern/technology-card";
 import { motion, useScroll, useTransform } from "motion/react";
 
 import { cn } from "@repo/ui";
@@ -36,7 +34,7 @@ export default function About() {
             as="h1"
             className="leading-wide tracking-relaxed z-20 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
           >
-            Designer
+            Developer
           </TextReveal>
           <motion.div
             className="mt-8"
@@ -59,7 +57,7 @@ export default function About() {
             <div className="space-y-8">
               <TextReveal
                 as="h3"
-                className="font-serif text-3xl leading-tight sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
+                className="font-serif text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
               >
                 I create captivating designs by blending aesthetics, motion, and
                 technology.
@@ -108,41 +106,6 @@ export default function About() {
                   className="flex rounded-lg"
                 />
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Separator />
-      <section className="py-12">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-5 md:gap-8">
-          <div className="col-span-1 md:col-span-2">
-            <h2 className="text-xl font-semibold sm:text-2xl">Technologies</h2>
-          </div>
-          <div className="col-span-1 md:col-span-3">
-            <div
-              className="relative h-full w-full cursor-pointer items-center justify-center overflow-hidden"
-              ref={testimonialsRef}
-            >
-              <div className="flex h-full w-full flex-wrap items-center justify-start gap-4">
-                {technologies.map((technology, index) => (
-                  <>
-                    <TechnologyCard
-                      key={`technology_${index}`}
-                      name={technology.name}
-                      containerRef={testimonialsRef}
-                    />
-
-                    {index < technologies.length - 1 && (
-                      <TechnologyCard
-                        key={`technology_sep_${index}`}
-                        name={","}
-                        containerRef={testimonialsRef}
-                      />
-                    )}
-                  </>
-                ))}
-              </div>
             </div>
           </div>
         </div>
