@@ -1,4 +1,4 @@
-import type { Skill } from "@/types/stack";
+import type { Stack } from "@/types/stack";
 import {
   MorphingDialog as Dialog,
   MorphingDialogClose as DialogClose,
@@ -18,7 +18,7 @@ import remarkMath from "remark-math";
 import { cn } from "@repo/ui";
 import { Icons } from "@repo/ui/icons";
 
-interface SkillCardProps extends Skill {
+interface StackCardProps extends Stack {
   index: number;
   className?: string;
 }
@@ -30,7 +30,7 @@ export default function SkillCard({
   description,
   thumbnail,
   className,
-}: SkillCardProps) {
+}: StackCardProps) {
   return (
     <Dialog
       transition={{
@@ -57,8 +57,8 @@ export default function SkillCard({
           <div className="flex w-full flex-col gap-2">
             <div className="flex items-center justify-between gap-2">
               <DialogImage
-                src={thumbnail ?? "/placeholder.svg"}
-                alt={`An image which depicts the skill (${name})`}
+                src={thumbnail?.src ?? "/placeholder.svg"}
+                alt={`An image which depicts the skill (${thumbnail?.alt ?? name})`}
                 className="h-12 w-12 object-cover object-top"
                 style={{
                   borderRadius: "4px",
@@ -89,8 +89,8 @@ export default function SkillCard({
           className="pointer-events-auto relative flex h-auto w-full flex-col overflow-hidden border border-zinc-950/10 bg-white sm:w-[500px] dark:border-zinc-50/10 dark:bg-zinc-900"
         >
           <DialogImage
-            src={thumbnail ?? "/placeholder.svg"}
-            alt={`An image which depicts the skill (${name})`}
+            src={thumbnail?.src ?? "/placeholder.svg"}
+            alt={`An image which depicts the skill (${thumbnail?.alt ?? name})`}
             className="h-full w-full"
           />
           <div className="flex flex-col gap-2 p-6">

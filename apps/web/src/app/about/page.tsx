@@ -1,18 +1,15 @@
 "use client";
 
 import React, { useRef } from "react";
-import SkillCard from "@/app/about/_components/skill-card";
+import SkillCard from "@/app/about/_components/stack-card";
 import Link from "@/components/fancy/link";
-import ImageTrail from "@/components/fancy/motion-trail";
 import TextReveal from "@/components/fancy/text-reveal";
 import { contact } from "@/components/sections/contact/config";
-import ContactForm from "@/components/sections/contact/cozy/contact-form";
-import { experiences } from "@/components/sections/experience/config";
+import { content as experienceContent } from "@/components/sections/experience/config";
 import ExperienceCard from "@/components/sections/experience/cozy/experience-card";
-import { skills } from "@/components/sections/stack/config";
+import { content as stackContent } from "@/components/sections/stack/config";
 import { technologies } from "@/components/sections/technologies/config";
 import TechnologyCard from "@/components/sections/technologies/modern/technology-card";
-import { exampleImages } from "@/lib/example-images";
 import { motion, useScroll, useTransform } from "motion/react";
 
 import { cn } from "@repo/ui";
@@ -23,29 +20,11 @@ import { Separator } from "@repo/ui/separator";
 export default function About() {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const heroRef = useRef<HTMLDivElement>(null);
   const testimonialsRef = useRef<HTMLDivElement>(null);
 
   return (
     <main className="flex-1 px-4 sm:px-8 md:px-12 lg:px-16 2xl:px-24">
       <section className="relative -mx-4 flex h-[calc(100svh-(--spacing(14)))] items-center justify-center overflow-hidden pb-12 sm:-mx-8 md:-mx-12 lg:-mx-16 2xl:-mx-24">
-        <div className="absolute top-0 left-0 z-0" ref={heroRef}>
-          <ImageTrail containerRef={heroRef}>
-            {exampleImages.map((image, index) => (
-              <div
-                key={index}
-                className="relative flex h-24 w-24 overflow-hidden"
-              >
-                <img
-                  src={image}
-                  alt="image"
-                  loading="lazy"
-                  className="absolute inset-0 object-cover"
-                />
-              </div>
-            ))}
-          </ImageTrail>
-        </div>
         <div className="relative container mx-auto flex flex-col items-center px-4">
           <TextReveal
             as="h1"
@@ -102,7 +81,7 @@ export default function About() {
                 create work that is both functional and impactful.
               </TextReveal>
               <Button asChild variant={"outline"} className="rounded-full px-6">
-                <a href="resume.pdf" target="_blank">
+                <a href="/resume.pdf" target="_blank">
                   View Resume <Icons.arrowUpRight className="ml-2 size-5" />
                 </a>
               </Button>
@@ -119,7 +98,7 @@ export default function About() {
           </div>
           <div className="col-span-1 md:col-span-3">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-1 md:gap-6 xl:grid-cols-2">
-              {skills.map((skill, index) => (
+              {stackContent.stacks.map((skill, index) => (
                 <SkillCard
                   key={`skill_${index}`}
                   index={index + 1}
@@ -177,7 +156,7 @@ export default function About() {
           </div>
           <div className="col-span-1 md:col-span-3">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-1 md:gap-6 xl:grid-cols-2">
-              {experiences.map((experience, index) => (
+              {experienceContent.experiences.map((experience, index) => (
                 <ExperienceCard
                   key={`experience_${index}`}
                   name={experience.name}
@@ -222,9 +201,6 @@ export default function About() {
                 </Link>
               ))}
             </div>
-          </div>
-          <div className="col-span-1 md:col-span-3">
-            <ContactForm />
           </div>
         </div>
       </section>
