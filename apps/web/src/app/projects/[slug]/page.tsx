@@ -34,7 +34,7 @@ export async function generateMetadata(props: {
           alt: "banner",
           width: 1200,
           height: 630,
-          url: `/images/projects/${slug}/cover.jpg`,
+          url: `/images/projects/${slug}/cover.png`,
           type: "image/png",
         },
       ],
@@ -47,7 +47,7 @@ export async function generateMetadata(props: {
           alt: "banner",
           width: 1200,
           height: 630,
-          url: `/images/projects/${slug}/cover.jpg`,
+          url: `/images/projects/${slug}/cover.png`,
         },
       ],
     },
@@ -71,7 +71,7 @@ export default async function ProjectPage(props0: {
       <div className="container mx-auto">
         <Header metadata={page.data} />
         <Image
-          src={`/images/projects/${slug}/cover.jpg`}
+          src={`/images/projects/${slug}/cover.png`}
           width={1280}
           height={832}
           alt={`Image of ${page.data.title}`}

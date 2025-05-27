@@ -48,10 +48,10 @@ function Projects() {
                     <div className="h-full">
                       <ProjectCard
                         title={project.title}
-                        href={project.url || "#"}
+                        href={project.url ?? "#"}
                         description={project.description}
                         tags={project.tags ?? []}
-                        thumbnail={project.thumbnail}
+                        thumbnail={project.thumbnail ?? "/placeholder.svg"}
                         // Additional props to silence type errors.
                         url={""}
                         slugs={[]}
