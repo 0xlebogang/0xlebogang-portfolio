@@ -10,9 +10,6 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
-
-# You can leverage Vercel Remote Caching with Turbo to speed up your builds
-# @link https://turborepo.org/docs/core-concepts/remote-caching#remote-caching-on-vercel-builds
 env:
   FORCE_COLOR: 3
   TURBO_TEAM: ${{ vars.TURBO_TEAM }}
@@ -28,7 +25,7 @@ jobs:
       - name: Setup
         uses: ./tooling/github/setup
 
-      - name: Build 
+      - name: Build
         run: pnpm build
 
       - name: Lint
@@ -55,12 +52,12 @@ jobs:
       - name: Setup
         uses: ./tooling/github/setup
 
-      - name: Build 
+      - name: Build
         run: pnpm build
 
       - name: Typecheck
         run: pnpm typecheck
-  
+
   knip:
     name: Knip
     runs-on: ubuntu-latest
