@@ -28,7 +28,7 @@ export function Reveal({ phrases, className = "", as = "div" }: RevealProps) {
       {phrases.map((phrase, index) => (
         <span
           key={index}
-          className="relative mr-1 inline-flex w-fit overflow-hidden"
+          className={`relative ${Tag == "p" ? "mr-1" : "mr-2"} inline-flex w-fit overflow-hidden`}
         >
           <motion.span
             className="inline-block"

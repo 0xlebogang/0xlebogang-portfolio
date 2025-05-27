@@ -27,13 +27,19 @@ export default function About() {
             as="h1"
             className="leading-wide tracking-relaxed z-20 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
           >
-            Innovator
+            Aspiring
           </TextReveal>
           <TextReveal
             as="h1"
             className="leading-wide tracking-relaxed z-20 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
           >
-            Developer
+            Backend
+          </TextReveal>
+          <TextReveal
+            as="h1"
+            className="leading-wide tracking-relaxed z-20 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
+          >
+            Engineer
           </TextReveal>
           <motion.div
             className="mt-8"
@@ -58,24 +64,19 @@ export default function About() {
                 as="h3"
                 className="font-serif text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
               >
-                I create captivating designs by blending aesthetics, motion, and
-                technology.
+                I am an aspiring backend engineer with an interest in creating
+                efficient and scalable systems.
               </TextReveal>
               <TextReveal
                 as="p"
                 className="text-muted-foreground text-base leading-relaxed sm:text-lg md:text-lg lg:text-xl xl:text-2xl"
               >
-                My journey into creativity began with a spark of curiosity about
-                how ideas could come to life on a screen. Fascinated by the
-                interplay of design and technology, I started exploring web
-                development, motion graphics, and interface design through
-                self-driven projects. With every experiment, my skills grew, and
-                what began as a hobby soon became a passion for crafting
-                meaningful digital experiences. As I honed my abilities, I
-                sought opportunities to apply them in real-world settings,
-                turning concepts into polished outcomes. Today, my approach
-                combines creativity, problem-solving, and technical expertise to
-                create work that is both functional and impactful.
+                My journey into tech comes after a background in the Sciences.
+                My first ever programming language was Python, which I used to
+                automate tasks tedious tasks on my machine. Since then, I have
+                expanded my skill set to include TypeScript, Node.js, and
+                various backend technologies. I am passionate about building
+                robust APIs and microservices that power modern applications.
               </TextReveal>
               <Button asChild variant={"outline"} className="rounded-full px-6">
                 <a href="/resume.pdf" target="_blank">
