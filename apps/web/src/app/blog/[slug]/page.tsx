@@ -90,7 +90,7 @@ export default async function BlogPage(props0: {
               {new Date(page.data.date).toDateString()}
             </p>
           </div>
-          {/*<Control url={page.url} />*/}
+          {/* <Control url={page.url} /> */}
         </div>
       </article>
     </main>
