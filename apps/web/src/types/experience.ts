@@ -4,3 +4,9 @@ export interface Experience {
   duration: string;
   description?: string;
 }
+
+export interface ExperienceContent {
+  title: string;
+  description: string;
+  experiences: Experience[];
+}

@@ -7,8 +7,6 @@ import { contact } from "@/components/sections/contact/config";
 import { cn } from "@repo/ui";
 import { buttonVariants } from "@repo/ui/button";
 
-import ContactForm from "./contact-form";
-
 function Contact() {
   return (
     <MotionWrap className="w-full py-24 lg:py-32" id="contact">
@@ -44,7 +42,7 @@ function Contact() {
               ))}
             </div>
           </div>
-          <ContactForm />
+          {/* <ContactForm /> */}
         </div>
       </div>
     </MotionWrap>
