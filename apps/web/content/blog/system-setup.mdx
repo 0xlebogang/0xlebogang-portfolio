@@ -1,0 +1,367 @@
+---
+title: System Setup With My Favourite Tools & Technologies
+description: A guide to setup your machine to be similar to mine
+date: 2025-05-29
+author: Lebogang Phoshoko
+---
+
+# My Development Setup
+
+This post details my current development environment, tools, and software that I use daily. 🛠️ I hope this might be useful for others setting up their development machines. ✨ Best part, I'm also going to add installation scripts & commands for Windows 🪟, Linux 🐧 & Mac 🍎. I'm on Linux though, so I have 100% confidence in the Linux commands. 💯
+
+## Hardware
+
+- 💻 Laptop:
+  - 🏭 Manufacturer: Micro-Star International (MSI)
+  - 📱 Model: Modern 14 C12MO
+  - 🧠 Processor: 12 × 12th Gen Intel® Core™ i5-1235U
+  - 🧮 RAM: 8GB DDR4
+  - 💾 Disk: 1TB SSD
+- 🖱️ Mouse: IRIScan Scanner mouse
+- 🎧 Other peripherals:
+  - 🎵 Volkano LEO 2.0 vk-1130 True Wireless Earphones.
+
+These computer specs have been perfect for both my development work and school projects. ⚡ I really can't complain about the performance, I got the recommendation from some blog post I saw on [dev.to](https://dev.to/). I just lost reference to the exact post though. Sorry. 🤷‍♂️
+
+I prefer using the trackpad because it feels faster ⚡, but bought this mouse mainly because it doubles as a scanner. 🔍 That's how I scan all my handwritten assignments and exams - pretty cool feature. I can't live without my earphones since I'm on Spotify constantly. 🎵 Yes, I'm a Spotify user through and through! 🎧
+
+## Operating System (OS)
+
+- Primary OS: [Fedora KDE Plasma Desktop](https://fedoraproject.org/kde/download)
+- Alternative OS: [Windows 11](https://www.microsoft.com/en-us/software-download/windows11)
+
+I used Windows for a while, which makes sense since it's usually the first operating system we encounter when we start using computers seriously. Now I use it as a backup option by running it in a virtual machine, along with macOS Sonoma. 🍎 I mainly use both systems to try out different things, and I specifically use Windows to test my C++ assignments before submitting them to make sure they work properly. ✅
+
+### Installation (Primary OS)
+
+I won't get into detail with this because it's out the scope of this post. Have a look at VirtualBox 📦 or VMWare 🖥️ and how to get setup with Fedora on either. To be generous, I've linked to a YouTube video [here](https://youtu.be/6bAdJWOltXc?si=Oi-R9elFelBzJODE) for virtual machines (recommended) 💻✨ and [here](https://youtu.be/Ivt5B5mgXTM?si=EW9KNOuSHkpBBSHT) for bare metal 💽🔧.
+
+Good Luck! ✅
+
+---
+
+## Windows & Mac Setups For Package Management
+
+To help everyone install software easily, no matter what operating system you're using, I'll show you how to set up both Windows and macOS with package managers like we have on Linux. This makes everything much simpler, you won't have to keep opening your browser and going to different download pages every time you need new software. 🚀
+
+> ⚠️ Not all the software will be available through these package managers though.
+
+### Installation
+
+> 💡 On Linux your don't need to install any package manager. We're using Fedora here so we have DNF5 setup and ready to use! 🐧
+
+#### Windows
+
+> 💡 There are other package managers you can use on windows, but I will be using [Chocolatey](https://chocolatey.org) 🍫 because that is what I have the most experience with. [WinGet](https://winget.run) is also a good one.
+
+> ‼️ For chocolatey to work as expected, you need to run these commands & every other installation command in PowerShell with admin privilages. 👨‍💻
+
+**Disable PowerShell's restricted execution policy**
+
+```powershell
+Set-ExecutionPolicy AllSigned
+```
+
+**Install Chocolatey**
+
+1. Temporarily bypass the execution policy for this process only
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force
+```
+
+2. Update the security protocol to use TLS 1.2 or greater
+
+```powershell
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+```
+
+3. Download and run the Chocolatey installation script from the official source
+
+```powershell
+$installScript = (New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')
+```
+
+4. Execute the downloaded installation script
+
+```powershell
+Invoke-Expression $installScript
+```
+
+**Confirm installation**
+
+```powershell
+choco --version
+```
+
+> Chocolatey should respond with version information after you've run this command.
+
+You're ready to install software using the Chocolatey package manager! 🚀🎉
+
+#### MacOS
+
+> 💡 We will use [Homebrew](https://brew.sh) 🍺 as the package manager on Mac. I honestly don't know of any other one that works with this system. Something for me to look out for. 🔍
+
+> ‼️ Make sure your machine fits these [requirements](https://docs.brew.sh/Installation#macos-requirements) ✅
+
+**Install Homebrew** 🍺
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+**Confirm installation** ✅
+
+```bash
+brew --version
+```
+
+> Homebrew should respond with version information after you've run this command. ✅
+
+You're ready to install software using Homebrew! 🚀🎉
+
+---
+
+> 🚀 From this point, I assume you've installed Fedora or either of the package managers. 📦 💻
+
+> 💡 Before installing anything on Linux, it's always good practice to update your system first.
+>
+> ```bash
+> sudo dnf check-update && sudo dnf upgrade -y
+> ```
+
+## Terminal Setup
+
+- Terminal emulator: [Tabby](https://tabby.sh)
+- Shell: [ZSH](https://zsh.org)
+- Shell framework: [Starship](https://starship.rs)
+- Font: [Lilex Nerd Font](https://www.nerdfonts.com/font-downloads)
+
+ZSH is only available on Mac and Linux. Sorry to the Windows folks - PowerShell it is for you! I use Tabby because it looks good and it's lightweight. It comes with a number of features that make my daily workflows easier (SSH client, Docker container connection).
+
+### Install ZSH (Mac & Linux only)
+
+1. Install zsh
+
+**On Linux:**
+
+```bash
+sudo dnf install zsh -y
+```
+
+**On Mac:**
+
+```bash
+brew install zsh
+```
+
+2. Set zsh as the default shell
+
+```bash
+chsh -s $(which zsh)
+```
+
+3. Restart your termial and follow the prompt to set up your zsh. We'll make it look good in just a few.
+
+### Install Tabby
+
+**Linux & Mac**
+
+> You can view the script before running it [here](https://packagecloud.io/eugeny/tabby/install#bash-rpm)
+
+```bash
+curl -s https://packagecloud.io/install/repositories/eugeny/tabby/script.rpm.sh | sudo bash
+```
+
+**Windows**
+
+```powershell
+choco install tabby -y
+```
+
+Great, now we can start using Tabby as the terminal going forward! 🚀✨
+
+### Install Starship
+
+> 💡 At this point I assume you are using ZSH as the default shell.
+
+**Linux**
+
+1. Enable the starship repo
+
+```bash
+sudo dnf copr enable atim/starship
+```
+
+2. Update the package cache
+
+```bash
+sudo dnf check-update
+```
+
+3. Install starship
+
+```bash
+sudo dnf install starship
+```
+
+4. Setup your shell to use Starship
+
+```bash
+echo 'eval "$(starship init zsh)"' >> ~/.zshrc
+```
+
+5. Read zsh config to refresh prompt
+
+```bash
+source ~/.zshrc
+```
+
+## Code Editor / IDE
+
+- Primary editor: [Vistual Studio Code (VS Code)](https://code.visualstudio.com/)
+- Alternative editor: Anything [JetBrains](https://www.jetbrains.com)
+- Theme: [Catppuccin Mocha](https://catppuccin.com)
+- Font: [CaskaydiaCode Nerd Font](https://www.nerdfonts.com/font-downloads)
+- Extensions:
+  - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+  - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+  - [Pyright](https://marketplace.visualstudio.com/items?itemName=ms-pyright.pyright)
+  - [Bazel](https://marketplace.visualstudio.com/items?itemName=BazelBuild.vscode-bazel) (Current rabbit hole, you don't have to get into this. I hope you get curious though.)
+  - [CMake](https://marketplace.visualstudio.com/items?itemName=twxs.cmake) & [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
+
+VS Code is my main editor for everything because it's lightweight and easily supports all the different programming languages I use regularly. I switch to JetBrains IDEs when I'm working with languages that need heavy configuration, like C++. CLion is my most-used JetBrains IDE for that. I also like changing things up sometimes, so I'll use WebStorm or PyCharm when I want a different coding environment.
+
+### Installation
+
+#### VS Code
+
+**Linux**
+
+1. Import Microsoft's GPG key to verify package signatures
+
+```bash
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+```
+
+2.Create the VS Code repository configuration file
+
+```bash
+sudo tee /etc/yum.repos.d/vscode.repo > /dev/null << EOF
+[code]
+name=Visual Studio Code
+baseurl=https://packages.microsoft.com/yumrepos/vscode
+enabled=1
+autorefresh=1
+type=rpm-md
+gpgcheck=1
+gpgkey=https://packages.microsoft.com/keys/microsoft.asc
+EOF
+```
+
+3. Update the package cache
+
+```bash
+sudo dnf check-update
+```
+
+4. Install VS Code
+
+```bash
+sudo dnf install code # or code-insiders
+```
+
+5. Confirm installation
+
+```bash
+code --version
+```
+
+**Mac**
+
+```bash
+brew install --cask visual-studio-code
+```
+
+Confirm installation
+
+```bash
+code --version
+```
+
+**Windows**
+
+```powershell
+choco install vscode -y
+```
+
+Confirm installation
+
+```powershell
+code --version
+```
+
+#### JetBrains
+
+To have an easy way to manage all the different IDEs from JetBrains, I use [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/). On Fedora, we don't have an rpm for it so we need to download and run it manually.
+
+## Programming Languages & Tools
+
+- Languages I work with regularly:
+  - [Node.js](https://nodejs.org)
+  - [Python](https://python.org)
+- Version managers: [Node Version Manager](https://github.com/nvm-sh/nvm)
+- Package managers: npm & pip
+
+### Install Node.js
+
+**Linux**
+
+1. Install Node Version Manager
+
+> You can view the install script [here](https://github.com/nvm-sh/nvm/blob/v0.40.3/install.sh)
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+```
+
+2. Install latest LTS version
+
+```bash
+nvm install --lts
+```
+
+3. Confirm installation
+
+```bash
+node --version
+```
+
+## Development Tools
+
+- Git GUI (if any): [e.g., GitHub Desktop, GitKraken]
+- API testing: [e.g., Postman, Insomnia]
+- Database tools: [e.g., MongoDB Compass, DBeaver]
+- Docker / containerization tools
+- Browser dev tools extensions
+
+## Productivity Software
+
+- Note-taking: [e.g., Notion, Obsidian]
+- Task management: [e.g., Todoist, Trello]
+- Communication: [e.g., Slack, Discord]
+- Window management: [e.g., Rectangle, Divvy]
+
+## Browser Setup
+
+- Primary browser: [e.g., Chrome, Firefox]
+- Essential extensions:
+  - [Extension 1]
+  - [Extension 2]
+  - [Extension 3]
+
+## Custom Configurations
+
+I keep all my dotfiles and configurations in [your dotfiles repo if public].
+
+Here are some of my favorite customizations:
