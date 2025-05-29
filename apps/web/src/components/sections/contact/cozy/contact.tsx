@@ -23,8 +23,9 @@ function Contact() {
             Contact Me
           </TextReveal>
           <TextReveal as="p" className="text-muted-foreground max-w-[600px]">
-            Have a question or want to work together? Send me a message using
-            the form.
+            Have a question or want to work together? Reach out to me via email
+            or connect with me on social media. I look forward to hearing from
+            you!
           </TextReveal>
         </div>
         <div className="flex flex-wrap">
