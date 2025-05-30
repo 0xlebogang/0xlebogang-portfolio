@@ -1,7 +1,7 @@
 ---
 title: System Setup With My Favourite Tools & Technologies
 description: A guide to setup your machine to be similar to mine
-date: 2025-05-29
+date: 2025-05-30
 author: Lebogang Phoshoko
 ---
 
@@ -24,6 +24,8 @@ This post details my current development environment, tools, and software that I
 These computer specs have been perfect for both my development work and school projects. ⚡ I really can't complain about the performance, I got the recommendation from some blog post I saw on [dev.to](https://dev.to/). I just lost reference to the exact post though. Sorry. 🤷‍♂️
 
 I prefer using the trackpad because it feels faster ⚡, but bought this mouse mainly because it doubles as a scanner. 🔍 That's how I scan all my handwritten assignments and exams - pretty cool feature. I can't live without my earphones since I'm on Spotify constantly. 🎵 Yes, I'm a Spotify user through and through! 🎧
+
+---
 
 ## Operating System (OS)
 
@@ -90,7 +92,7 @@ Invoke-Expression $installScript
 
 **Confirm installation**
 
-```powershell
+```bash
 choco --version
 ```
 
@@ -122,7 +124,7 @@ You're ready to install software using Homebrew! 🚀🎉
 
 ---
 
-> 🚀 From this point, I assume you've installed Fedora or either of the package managers. 📦 💻
+> From this point, I assume you've installed Fedora or either of the package managers. 📦 💻
 
 > 💡 Before installing anything on Linux, it's always good practice to update your system first.
 >
@@ -130,14 +132,14 @@ You're ready to install software using Homebrew! 🚀🎉
 > sudo dnf check-update && sudo dnf upgrade -y
 > ```
 
-## Terminal Setup
+## Terminal Setup 🖥️
 
-- Terminal emulator: [Tabby](https://tabby.sh)
-- Shell: [ZSH](https://zsh.org)
-- Shell framework: [Starship](https://starship.rs)
-- Font: [Lilex Nerd Font](https://www.nerdfonts.com/font-downloads)
+- Terminal emulator: [Tabby](https://tabby.sh) 🐱
+- Shell: [ZSH](https://zsh.org) 🐚
+- Shell framework: [Starship](https://starship.rs) 🚀
+- Font: [Lilex Nerd Font](https://www.nerdfonts.com/font-downloads) 🖋️
 
-ZSH is only available on Mac and Linux. Sorry to the Windows folks - PowerShell it is for you! I use Tabby because it looks good and it's lightweight. It comes with a number of features that make my daily workflows easier (SSH client, Docker container connection).
+ZSH is only available on Mac and Linux. Sorry to the Windows folks - PowerShell it is for you! 😅 I use Tabby because it looks good and it's lightweight. ✨ It comes with a number of features that make my daily workflows easier (SSH client 🔑, Docker container connection 🐳).
 
 ### Install ZSH (Mac & Linux only)
 
@@ -175,7 +177,7 @@ curl -s https://packagecloud.io/install/repositories/eugeny/tabby/script.rpm.sh 
 
 **Windows**
 
-```powershell
+```bash
 choco install tabby -y
 ```
 
@@ -217,24 +219,24 @@ echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-## Code Editor / IDE
+---
 
-- Primary editor: [Vistual Studio Code (VS Code)](https://code.visualstudio.com/)
-- Alternative editor: Anything [JetBrains](https://www.jetbrains.com)
-- Theme: [Catppuccin Mocha](https://catppuccin.com)
-- Font: [CaskaydiaCode Nerd Font](https://www.nerdfonts.com/font-downloads)
-- Extensions:
-  - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-  - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-  - [Pyright](https://marketplace.visualstudio.com/items?itemName=ms-pyright.pyright)
-  - [Bazel](https://marketplace.visualstudio.com/items?itemName=BazelBuild.vscode-bazel) (Current rabbit hole, you don't have to get into this. I hope you get curious though.)
-  - [CMake](https://marketplace.visualstudio.com/items?itemName=twxs.cmake) & [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
+## Code Editor / IDE 🧰
 
-VS Code is my main editor for everything because it's lightweight and easily supports all the different programming languages I use regularly. I switch to JetBrains IDEs when I'm working with languages that need heavy configuration, like C++. CLion is my most-used JetBrains IDE for that. I also like changing things up sometimes, so I'll use WebStorm or PyCharm when I want a different coding environment.
+- Primary editor: [Vistual Studio Code (VS Code)](https://code.visualstudio.com/) 📝
+- Alternative editor: Anything [JetBrains](https://www.jetbrains.com) 🚀
+- Theme: [Catppuccin Mocha](https://catppuccin.com) 🎨
+- Font: [CaskaydiaCode Nerd Font](https://www.nerdfonts.com/font-downloads) 🖋️
+- Extensions: 🧩
+  - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) ✨
+  - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 🔍
+  - [Pyright](https://marketplace.visualstudio.com/items?itemName=ms-pyright.pyright) 🐍
+  - [Bazel](https://marketplace.visualstudio.com/items?itemName=BazelBuild.vscode-bazel) 🏗️ (Current rabbit hole, you don't have to get into this. I hope you get curious though.)
+  - [CMake](https://marketplace.visualstudio.com/items?itemName=twxs.cmake) & [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) 🛠️
 
-### Installation
+VS Code is my main editor for everything because it's lightweight and easily supports all the different programming languages I use regularly. 💻 I switch to JetBrains IDEs when I'm working with languages that need heavy configuration, like C++. CLion is my most-used JetBrains IDE for that. 🔧 I also like changing things up sometimes, so I'll use WebStorm or PyCharm when I want a different coding environment. 🔄
 
-#### VS Code
+### VS Code
 
 **Linux**
 
@@ -244,7 +246,7 @@ VS Code is my main editor for everything because it's lightweight and easily sup
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 ```
 
-2.Create the VS Code repository configuration file
+2. Create the VS Code repository configuration file
 
 ```bash
 sudo tee /etc/yum.repos.d/vscode.repo > /dev/null << EOF
@@ -291,31 +293,52 @@ code --version
 
 **Windows**
 
-```powershell
+```bash
 choco install vscode -y
 ```
 
 Confirm installation
 
-```powershell
+```bash
 code --version
 ```
 
-#### JetBrains
+### JetBrains
 
-To have an easy way to manage all the different IDEs from JetBrains, I use [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/). On Fedora, we don't have an rpm for it so we need to download and run it manually.
+To have an easy way to manage all the different IDEs from JetBrains, I use [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/) 🧰. On Fedora, we don't have an rpm for it so we need to download and run it manually. 🛠️
 
-## Programming Languages & Tools
+**Linux**
 
-- Languages I work with regularly:
-  - [Node.js](https://nodejs.org)
-  - [Python](https://python.org)
-- Version managers: [Node Version Manager](https://github.com/nvm-sh/nvm)
-- Package managers: npm & pip
+Follow along with these [instructions](https://dev.to/jorgecastro/install-jetbrains-toolbox-on-linux-596n) to get the toolbox installed.
+
+**Mac**
+
+```bash
+brew install --cask jetbrains-toolbox
+```
+
+**Windows**
+
+```bash
+choco install jetbrainstoolbox -y
+```
+
+You can now install which ever JetBrains IDE, you want to work with. In my case, [CLion](https://www.jetbrains.com/clion) 🔧, [WebStorm](https://www.jetbrains.com/webstorm) 🌐, & [PyCharm](https://www.jetbrains.com/pycharm) 🐍.
+
+---
+
+## Programming Languages & Tools 🧰
+
+- Languages I work with regularly: 💻
+  - [Node.js](https://nodejs.org) ⚡
+  - [Python](https://python.org) 🐍
+  - [C/C++](https://cplusplus.com) ⚙️
+- Version managers: [Node Version Manager](https://github.com/nvm-sh/nvm) 🔄
+- Package managers: pnpm 📦, pip 🐍, & CMake 🏗️
 
 ### Install Node.js
 
-**Linux**
+**Linux & Mac**
 
 1. Install Node Version Manager
 
@@ -325,7 +348,7 @@ To have an easy way to manage all the different IDEs from JetBrains, I use [JetB
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 ```
 
-2. Install latest LTS version
+2. Install latest LTS version of Node
 
 ```bash
 nvm install --lts
@@ -337,31 +360,337 @@ nvm install --lts
 node --version
 ```
 
-## Development Tools
+&
 
-- Git GUI (if any): [e.g., GitHub Desktop, GitKraken]
-- API testing: [e.g., Postman, Insomnia]
-- Database tools: [e.g., MongoDB Compass, DBeaver]
-- Docker / containerization tools
-- Browser dev tools extensions
+```bash
+npm --version
+```
 
-## Productivity Software
+**Windows**
 
-- Note-taking: [e.g., Notion, Obsidian]
-- Task management: [e.g., Todoist, Trello]
-- Communication: [e.g., Slack, Discord]
-- Window management: [e.g., Rectangle, Divvy]
+1. Install NVM
+
+```bash
+choco install nvm -y
+```
+
+2. Install latest LTS version of Node
+
+```bash
+nvm install --lts
+```
+
+3. Confirm installation
+
+```bash
+node --version
+```
+
+&
+
+```bash
+npm --version
+```
+
+> [OPTIONAL] 📦
+>
+> I usually use PNPM as my package manager in most projects. 🚀 I like how it approaches monorepo architectures and how it manages their dependencies. 🧩 ⚡
+
+**Windows, Mac & Linux**
+
+1. Prepare PNPM
+
+```bash
+corepack prepare pnpm
+```
+
+2. Install latest PNPM
+
+```bash
+corepack enable pnpm@latest
+```
+
+If this doesn't work, do this:
+
+```bash
+npm install --global pnpm@latest
+```
+
+3. Confirm installation
+
+```bash
+pnpm --version
+```
+
+Node.js is ready for use!
+
+### Install Python
+
+> I'm still working on adopting the use of a version manager for python like I am with Node.js. Currently, I install the versions manually
+
+**Linux**
+
+Python is one of the tools installed by default on Fedora. Not much needs to be done here. What you can do, is install which ever version you are looking to use specifically.
+
+**Mac**
+
+1. Install Python 3.13
+
+```bash
+brew install python@3.13
+```
+
+2. Confirm installation
+
+```bash
+python3 --version
+```
+
+**Windows**
+
+1. Install Python
+
+```bash
+choco install python313 -y
+```
+
+2. Confirm installation
+
+```bash
+python --version
+```
+
+Python is now installed!
+
+### Install compilers for C/C++
+
+**Linux**
+
+```bash
+sudo dnf install gcc gcc-c++ clang clang++ cmake
+```
+
+**Mac**
+
+1. This provides clang and clang++.
+
+```bash
+xcode-select --install
+```
+
+2. Install gcc & CMake
+
+```bash
+brew install gcc cmake
+```
+
+**Windows**
+
+Option 1: Visual Studio (Recommended)
+
+- Download Visual Studio Community (free) from Microsoft
+- During installation, select "Desktop development with C++" workload
+
+Option 2: MinGW-w64
+
+- Install via MSYS2: Download from msys2.org
+
+```bash
+pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-clang mingw-w64-x86_64-cmake
+```
+
+- Add MinGW bin directory to PATH
+
+Option 3: Clang via LLVM
+
+- Download pre-built binaries from llvm.org
+- Add to PATH after installation
+
+---
+
+## Development Tools 🛠️
+
+- Version Control: [Git](https://git-scm.com) 📚
+- API testing: [Postman](https://postman.com) 🚀
+- Database tools: [DBeaver](https://dbeaver.io) 🗃️
+- Containerization Tools: 📦
+  - [Podman](https://podman.io) 🐳
+
+### Install Git
+
+**Linux**
+
+On linux, git is usually preinstalled.
+
+1. Install Git
+
+```bash
+sudo dnf install git
+```
+
+2. Confirm installation
+
+```bash
+git --version
+```
+
+**Mac**
+
+1. Install Git
+
+```bash
+brew install git
+```
+
+2. Confirm installation
+
+```bash
+git --version
+```
+
+**Windows**
+
+1. Install git
+
+```bash
+choco install git -y
+```
+
+2. Confirm installation
+
+```bash
+git --version
+```
+
+### Install Postman
+
+**Linux**
+
+1. Download this [script](https://gist.github.com/lucasalvessouza/682e8b46b2912822d9c836b189813d91) to your downloads folder.
+
+2. Make the script executable.
+
+```bash
+cd ~/Downloads
+```
+
+```bash
+chmod +x install_postman.sh
+```
+
+3. Run the install script
+
+```bash
+./install_postman.sh
+```
+
+```bash
+cd ~
+```
+
+**Mac**
+
+```bash
+brew install --cask postman
+```
+
+**Windows**
+
+```bash
+choco install postman -y
+```
+
+### Install DBeaver
+
+**Linux**
+
+1. Download the [Linux RPM Package](https://dbeaver.io/download/)
+
+2. Run the installer
+   > Replace VERSION with the actual version number of the downloaded file.
+
+```bash
+sudo dnf ~/Downloads/dbeaver-ce-VERSION.rpm
+```
+
+**Mac**
+
+```bash
+brew install --cask dbeaver-community
+```
+
+**Windows**
+
+```bash
+choco install dbeaver -y
+```
+
+### Install Podman
+
+**Linux**
+
+1. Install Podman
+
+```bash
+sudo dnf install podman -y
+```
+
+2. Confirm installation
+
+```bash
+podman --version
+```
+
+**Mac**
+
+1. Install Podman
+
+```bash
+brew install podman
+```
+
+2. Confirm installation
+
+```bash
+podman --version
+```
+
+**Windows**
+
+1. Install podman
+
+```bash
+choco install podman-cli
+```
+
+2. Confirm installation
+
+```bash
+podman --version
+```
+
+---
 
 ## Browser Setup
 
-- Primary browser: [e.g., Chrome, Firefox]
-- Essential extensions:
-  - [Extension 1]
-  - [Extension 2]
-  - [Extension 3]
+- Primary browser: [Firefox](https://www.mozilla.org/en-US/firefox/new/)
 
-## Custom Configurations
+**Linux**
 
-I keep all my dotfiles and configurations in [your dotfiles repo if public].
+Firefox is preinstalled on Fedora
 
-Here are some of my favorite customizations:
+**Mac**
+
+```bash
+brew install --cask firefox
+```
+
+**Windows**
+
+```bash
+choco install firefox -y
+```
+
+---
+
+There you have it! 🎉 We have successfully setup our system. 🚀✨
