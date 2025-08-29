@@ -1,0 +1,157 @@
+---
+title: GKSS Code Challenges Platform
+description: A complete coding challenge score platform & code challenge workflow.
+date: 2025-06-15
+website: https://gkss-leabderboard.vercel.app/
+github: https://github.com/GKSS-UNISA/code-challenges-leabderboard
+tags:
+  - label: Next.js
+  - label: Tailwind CSS
+  - label: TypeScript
+  - label: GitHub
+  - label: Turborepo
+  - label: Shadcn UI
+  - label: GitHub Copilot
+---
+
+## Project Overview
+
+The GKSS Code Challenges Platform is a comprehensive educational system designed to help developers improve their coding skills through structured programming challenges. The project consists of two interconnected repositories that work together to create a seamless learning experience with automated scoring and progress tracking.
+
+## System Architecture
+
+### Repository Structure
+
+The platform is built around two main repositories:
+
+**1. [GKSS-UNISA/code-challenges](https://github.com/GKSS-UNISA/code-challenges)** - The challenge repository containing:
+
+- Programming challenges in Python and C++
+- Automated testing frameworks
+- GitHub Actions CI/CD workflows
+- Comprehensive challenge documentation
+
+**2. [GKSS-UNISA/code-challenges-leaderboard](https://github.com/GKSS-UNISA/code-challenges-leaderboard)** - The web platform featuring:
+
+- User authentication and profile management
+- Real-time leaderboard system
+- API endpoints for score management
+- Admin dashboard for challenge tracking
+
+## How It Works
+
+### Challenge Workflow
+
+1. **Fork and Clone**: Users fork the code-challenges repository to their GitHub account
+2. **Solve Challenges**: Navigate to specific challenge directories and implement solutions
+3. **Automated Testing**: Push changes trigger GitHub Actions workflows that:
+   - Run comprehensive test suites (GoogleTest for C++, unittest for Python)
+   - Validate code quality and functionality
+   - Check for edge cases and error handling
+4. **Score Integration**: Upon successful test completion, the workflow automatically:
+   - Calls the leaderboard API using secure tokens
+   - Increments the user's points in the database
+   - Updates real-time rankings on the web platform
+
+### Challenge Categories
+
+The platform offers challenges across multiple difficulty levels:
+
+- **Beginner**: Basic programming concepts (e.g., factorial calculator, palindrome checker)
+- **Intermediate**: Data structures and algorithms (e.g., binary search tree, vector math library)
+- **Advanced**: Complex system design (e.g., inventory management, smart pointer arrays)
+
+Each challenge includes:
+
+- Detailed problem descriptions with requirements
+- Comprehensive test cases covering edge cases
+- Solution templates with helpful comments
+- Performance benchmarks and optimization tips
+
+## Technology Stack
+
+### Code Challenges Repository
+
+- **Languages**: Python 3.8+, C++20
+- **Testing**: GoogleTest (C++), unittest (Python)
+- **Build System**: CMake for C++ projects
+- **CI/CD**: GitHub Actions with custom workflows
+- **Documentation**: Markdown with structured templates
+
+### Leaderboard Platform
+
+- **Frontend**: Next.js 14 with TypeScript
+- **Styling**: Tailwind CSS with Shadcn/ui components
+- **Authentication**: Better Auth with email/password support
+- **Database**: PostgreSQL with Prisma ORM
+- **API**: RESTful endpoints with API key authentication
+- **Deployment**: Vercel with edge functions
+- **Testing**: Vitest with React Testing Library
+
+### Key Features
+
+#### Automated Scoring System
+
+The platform features a sophisticated points system that integrates directly with GitHub workflows:
+
+```yaml
+- name: Check secrets and increment points
+  run: |
+    curl -X POST ${{ secrets.GKSS_LEADERBOARD_API_URL }} \
+      -H "x-gkssunisa-api-key: ${{ secrets.GKSS_LEADERBOARD_API_KEY }}" \
+      -H "Content-Type: application/json" \
+      -d '{"message": "Challenge completed by ${{ github.actor }}"}'
+```
+
+#### User Management
+
+- Secure authentication with session management
+- Personal dashboard showing progress and rankings
+- API key generation for CI/CD integration
+- Profile management with challenge history
+
+#### Real-time Leaderboard
+
+- Live ranking updates as users complete challenges
+- Comprehensive scoring system based on challenge difficulty
+- Progress tracking with detailed statistics
+- Responsive design for all device types
+
+## Development Workflow
+
+### For Contributors
+
+1. **Challenge Creation**: Follow structured templates in the CONTRIBUTING.md
+2. **Testing Framework**: Implement comprehensive test suites
+3. **GitHub Actions**: Create custom workflows for automated validation
+4. **Documentation**: Provide detailed READMEs with examples and tips
+
+### For Users
+
+1. **Setup**: Fork repository and configure development environment
+2. **Challenge Selection**: Choose challenges based on skill level
+3. **Implementation**: Code solutions in provided template files
+4. **Validation**: Local testing before pushing changes
+5. **Submission**: Automated scoring upon successful CI/CD completion
+
+## Quality Assurance
+
+The platform maintains high code quality through:
+
+- **ESLint** and **Prettier** for code formatting
+- **TypeScript** for type safety
+- **Vitest** for comprehensive testing
+- **Husky** for pre-commit hooks
+- **GitHub Actions** for continuous integration
+
+## Impact and Learning Outcomes
+
+This platform serves as an excellent learning resource by:
+
+- Providing structured, progressive skill development
+- Offering real-world programming scenarios
+- Teaching best practices in software development
+- Building familiarity with modern development tools and workflows
+- Creating a competitive yet collaborative learning environment
+
+The GKSS Code Challenges Platform represents a modern approach to coding education, combining automated assessment with engaging user experience to create an effective learning ecosystem for developers of all skill levels.
