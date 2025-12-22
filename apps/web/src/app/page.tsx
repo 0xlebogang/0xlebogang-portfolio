@@ -1,4 +1,3 @@
-import Cursor from "@/components/cursor/cursor";
 import {
   About,
   Contact,
@@ -28,7 +27,6 @@ export default function Home() {
           <Footer />
         </footer>
       </div>
-      <Cursor />
     </SmoothScroll>
   );
 }
