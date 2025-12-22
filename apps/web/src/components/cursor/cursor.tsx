@@ -14,7 +14,7 @@ interface MouseMoveEvent {
 export default function Cursor() {
   const [isPressed, setIsPressed] = useState<boolean>(false);
   const cursor = useRef<HTMLDivElement>(null);
-  const cursorSize = isPressed ? 21 : 15;
+  const cursorSize = isPressed ? 12 : 6;
   const [isVisible, setIsVisible] = useState(false);
 
   const mouse: { x: MotionValue<number>; y: MotionValue<number> } = {
