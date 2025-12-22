@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@repo/tsconfig": "workspace:*",
-    "@types/node": "^22.13.10",
+    "@types/node": "^22.19.3",
     "typescript": "catalog:"
   },
   "lint-staged": {
