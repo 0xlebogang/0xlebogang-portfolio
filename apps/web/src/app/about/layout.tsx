@@ -1,6 +1,5 @@
 import type { AboutPage, WithContext } from "schema-dts";
 import { metadata as meta } from "@/app/config";
-import Cursor from "@/components/cursor/cursor";
 import { Footer, Header } from "@/components/sections";
 import { contact } from "@/components/sections/contact/config";
 import SmoothScroll from "@/components/smooth-scroll";
@@ -57,7 +56,6 @@ export default function AboutLayout({
           <Footer />
         </footer>
       </div>
-      <Cursor />
     </SmoothScroll>
   );
 }
