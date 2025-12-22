@@ -54,5 +54,6 @@ export const contactSubmit = actionClient
         success:
           "Thank you for reaching out! Your message has been successfully sent.",
       };
-    if (error) throw new Error(JSON.stringify(error));
+
+    throw new Error(JSON.stringify(error));
   });

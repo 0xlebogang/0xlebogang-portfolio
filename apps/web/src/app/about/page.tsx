@@ -73,9 +73,9 @@ export default function About() {
                 My journey into tech comes after a background in the Sciences.
                 My first ever programming language was Python, which I used to
                 automate tasks tedious tasks on my machine. Since then, I have
-                expanded my skill set to include TypeScript, Go and
-                various backend technologies. I am passionate about building
-                robust APIs and microservices that power modern applications.
+                expanded my skill set to include TypeScript, Go and various
+                backend technologies. I am passionate about building robust APIs
+                and microservices that power modern applications.
               </TextReveal>
               <Button asChild variant={"outline"} className="rounded-full px-6">
                 <a href="/resume.pdf" target="_blank">

@@ -12,13 +12,13 @@ import "@/styles/globals.css";
 
 // https://iamsteve.me/blog/the-best-ink-trap-typefaces-for-websites
 const fontSerif = DM_Sans({
-    variable: "--font-serif",
+  variable: "--font-serif",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
 const fontSans = Syne({
-    variable: "--font-sans",
+  variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -47,7 +47,9 @@ export default function RootLayout({
           <Script src="https://unpkg.com/react-scan/dist/auto.global.js" />
         ) : null}
       </head>
-      <body className={`${fontSans.variable} ${fontSerif.variable} font-sans antialiased`}>
+      <body
+        className={`${fontSans.variable} ${fontSerif.variable} font-sans antialiased`}
+      >
         <Providers>
           <Loader />
           {children}

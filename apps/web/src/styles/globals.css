@@ -185,7 +185,7 @@
 
   h1,
   h2,
-    h3 {
-        @apply font-serif font-normal;
-    }
+  h3 {
+    @apply font-serif font-normal;
+  }
 }

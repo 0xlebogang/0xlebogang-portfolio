@@ -1,6 +1,6 @@
 import type { Contact } from "@/types/contact";
 import {
-    SiDiscord,
+  SiDiscord,
   SiGithub,
   SiLinkedin,
   SiX,
@@ -21,9 +21,9 @@ const contact: Contact = {
       Icon: SiYoutube,
     },
     {
-        name: "Discord",
-        href: "https://discord.com/users/1108815801873617007",
-        Icon: SiDiscord,
+      name: "Discord",
+      href: "https://discord.com/users/1108815801873617007",
+      Icon: SiDiscord,
     },
     {
       name: "X",
