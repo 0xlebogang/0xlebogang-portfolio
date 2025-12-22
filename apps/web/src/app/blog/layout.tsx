@@ -1,4 +1,3 @@
-import Cursor from "@/components/cursor/cursor";
 import { Footer, Header } from "@/components/sections";
 import SmoothScroll from "@/components/smooth-scroll";
 
@@ -16,7 +15,6 @@ export default function BlogLayout({
           <Footer />
         </footer>
       </div>
-      <Cursor />
     </SmoothScroll>
   );
 }
