@@ -1,5 +1,6 @@
 import type { Contact } from "@/types/contact";
 import {
+    SiDiscord,
   SiGithub,
   SiLinkedin,
   SiX,
@@ -7,7 +8,7 @@ import {
 } from "@icons-pack/react-simple-icons";
 
 const contact: Contact = {
-  email: "phoshokolebogang@outlook.com",
+  email: "dev.phoshoko.ml@gmail.com",
   socials: [
     {
       name: "Github",
@@ -20,8 +21,13 @@ const contact: Contact = {
       Icon: SiYoutube,
     },
     {
+        name: "Discord",
+        href: "https://discord.com/users/1108815801873617007",
+        Icon: SiDiscord,
+    },
+    {
       name: "X",
-      href: "https://x.com/onlyphantomleii",
+      href: "https://x.com/0xlebogang",
       Icon: SiX,
     },
     {

@@ -16,7 +16,7 @@ export default function Loader() {
             from={10}
             target={100}
             autoStart={true}
-            transition={{ duration: 2.5, type: "tween", ease: "easeInOut" }}
+            transition={{ duration: 0.5, type: "tween", ease: "easeInOut" }}
             onComplete={() => setIsVisible(false)}
             onStart={() => console.log("start")}
           />

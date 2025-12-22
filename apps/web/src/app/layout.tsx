@@ -1,4 +1,4 @@
-import { Space_Grotesk } from "next/font/google";
+import { DM_Sans, Syne } from "next/font/google";
 import Script from "next/script";
 import { metadata as meta } from "@/app/config";
 import Loader from "@/app/loader";
@@ -11,7 +11,14 @@ import { Toaster } from "@repo/ui/sonner";
 import "@/styles/globals.css";
 
 // https://iamsteve.me/blog/the-best-ink-trap-typefaces-for-websites
-const space_grotesk = Space_Grotesk({
+const fontSerif = DM_Sans({
+    variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const fontSans = Syne({
+    variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -40,7 +47,7 @@ export default function RootLayout({
           <Script src="https://unpkg.com/react-scan/dist/auto.global.js" />
         ) : null}
       </head>
-      <body className={`${space_grotesk.className} antialiased`}>
+      <body className={`${fontSans.variable} ${fontSerif.variable} font-sans antialiased`}>
         <Providers>
           <Loader />
           {children}

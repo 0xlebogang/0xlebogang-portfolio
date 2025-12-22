@@ -182,4 +182,10 @@
   .lenis.lenis-scrolling iframe {
     @apply pointer-events-none;
   }
+
+  h1,
+  h2,
+    h3 {
+        @apply font-serif font-normal;
+    }
 }

@@ -64,8 +64,7 @@ export default function About() {
                 as="h3"
                 className="font-serif text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl"
               >
-                I am an aspiring backend engineer with an interest in creating
-                efficient and scalable systems.
+                I aspire to be a full fledged Backend Engineer one day.
               </TextReveal>
               <TextReveal
                 as="p"
@@ -74,7 +73,7 @@ export default function About() {
                 My journey into tech comes after a background in the Sciences.
                 My first ever programming language was Python, which I used to
                 automate tasks tedious tasks on my machine. Since then, I have
-                expanded my skill set to include TypeScript, Node.js, and
+                expanded my skill set to include TypeScript, Go and
                 various backend technologies. I am passionate about building
                 robust APIs and microservices that power modern applications.
               </TextReveal>
