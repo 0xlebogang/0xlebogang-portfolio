@@ -1,0 +1,192 @@
+---
+title: Kodaflux
+description: An AI agent the reads any GitHub repo and generates a unified documentation site for all project dependencies
+date: 2026-03-18
+website: https://kodaflux.lebophoshoko.dedyn.io
+github: https://github.com/koda-flux/kodaflux
+tags:
+  - label: FastAPI
+  - label: Next.js
+  - label: TypeScript
+  - label: Shadcn UI
+  - label: Langgraph
+  - label: Gradient ADK
+  - label: Terraform
+  - label: DigitalOcean
+  - label: GitHub
+  - label: Turborepo
+---
+
+## Inspiration
+
+Every developer has been through that first few weeks where they've just been on boarded onto a new project, cloned the repo, and now need spend valuable time not writing code, but hunting documentation and finding the resources to help them get started. Thirty dependencies across three languages, each with their own docs site, their own structure, their own way of explaining things. It's fragmented and time-consuming. I built Kodaflux to fix this.
+
+## What it does
+
+Kodaflux is an agentic AI application that takes a GitHub repository URL and autonomously generates a complete, unified documentation website for every dependency in that project. Drop in a repo link, and within minutes you have a fully navigable Docsify site hosted and live with consistent, readable quick-start guides for your entire dependency tree (Quick starts only for prototyping). No manual configuration. No copy-pasting. Just a URL in, a documentation site out.
+
+## How I built it
+
+### Where it started
+
+I had never built an application integrated with AI before. Kodaflux is the first. I knew the problem I wanted to solve, I had a rough idea of the pipeline.
+
+The first decision was the architecture. Rather than a single monolithic LLM call, I designed the system as a multi-agent pipeline where each stage has a single responsibility. This meant I could build, manually test, and deploy each agent independently before wiring them together, which turned out to be the right call given how many unexpected issues came up at each stage. I used GitHub's project management features throughout development. Issues, Pull Requests, and a GitHub Project board to track every task and feature from the first commit. This kept the work structured. Debugging was chaotic though. I even used my IDE's built-in debugger at some point.
+
+### The Pipeline
+
+The system is built as a LangGraph StateGraph with five nodes, each a dedicated agent:
+
+```
+Analyst -> Researcher -> Scraper -> Formatter -> Storer
+```
+
+Each node receives the shared AgentState, does its work, and passes the updated state to the next node. The state carries everything. The repo URL, the extracted dependency names, the found documentation URLs, the scraped markdown, the formatted content, and the final storage confirmation.
+
+1. **The Analyst**:
+	uses the GitHub API via PyGithub to recursively walk the entire file tree of a repository in a single API call using `get_git_tree(sha="HEAD", recursive=True)`. It filters for `requirements.txt`, `pyproject.toml`, and `package.json` files anywhere in the tree, including deeply nested packages in monorepos, it parses each file with dedicated parsers that handle version specifiers, extras, workspace protocol entries, and VCS references, and returns a flat sorted list of unique dependency names.
+
+2. **The Researcher**:
+	takes that list and uses Firecrawl's search endpoint to find the official Quick Start documentation URL for each dependency. A LLM then picks the best URL from the search results. Results are cached to disk keyed by a MD5 hash of the dependency name, so development reruns don't burn API credits.
+
+3. **The Scraper**:
+	validates each URL for reachability using an `HTTP HEAD` request before spending a Firecrawl credit on it, scrapes the page content as markdown, and passes the raw content forward. Unreachable pages and 404s are skipped gracefully and stub entries are returned in their place.
+
+4. **The Formatter**:
+	takes the raw scraped markdown for each dependency and uses an LLM to rewrite it into a single consistent documentation format with the same heading structure, same tone and the same code block conventions so the generated site reads like it was written by one team rather than scraped from thirty different places. Content is truncated before being sent to the LLM to avoid inference timeouts on large pages.
+
+5. **The Storer**:
+	assembles the full Docsify file structure. `index.html`, `_sidebar.md`, `README.md`, `.nojekyll`, and one markdown file per dependency under `/docs` and writes everything to a DigitalOcean Spaces bucket. On completion, it fires a `POST` callback to the backend API which creates the project record in the database and notifies the frontend.
+
+## Challenges I ran into
+
+### This Was My First AI Application
+
+Going into this project I had never integrated an LLM into a software application. Every pattern. The tool calling, structured output, agent orchestration and prompt design was new. The learning curve was steep but the Gradient ADK's tight integration with LangGraph helped me focus on the agent logic and less on the infrastructure plumbing.
+
+### Getting the LLM Message Format Right
+
+One of the earliest and most frkodaflux.lebophoshoko.dedyn.ioustrating issues was the `AIMessageChunk` error. LangChain's `create_react_agent` was injecting internal message types into the conversation history that the Gradient API rejected because `AIMessageChunk` is not a valid OpenAI message role. The fix was to stop using `create_react_agent` for the researcher and instead call the LLM directly in a two-step pattern. Search first, then ask the LLM to interpret the results with only `SystemMessage` and `HumanMessage`, both of which are valid roles the API accepts.
+
+### Tool Calling Only Works on Commercial Models
+
+Midway through building the analyst agent I hit a `ValueError: Missing tools 'github_repo_dependencies' in the model.bind_tools()` error. After investigation, it turned out that `create_react_agent` internally calls `model.bind_tools()`, and the open-source models available on Gradient (like openai-gpt-oss-120b which is used in this project) don't support function/tool calling. Only commercial models.
+
+### The MCP Connection Loop
+
+An early version of the analyst used the GitHub MCP server via `MultiServerMCPClient`. When the server started, the logs filled with `GET stream disconnected, reconnecting in 1000ms...` in an endless loop. I haven't really figured out why. I ended up replacing the MCP approach with a direct PyGithub tool function, which was simpler and more reliable.
+
+### 404 URLs in the Generated Site
+
+The researcher agent initially used DuckDuckGo search. The problem was that DuckDuckGo returns whatever ranks highest, and LLMs are confidently wrong about specific URL paths. Documentation sites move around frequently. What used to be at `reactjs.org/docs/getting-started.html` is now a redirect because React moved to `react.dev`. The returned documentation URL list was full of broken links. Switching to Firecrawl's search endpoint fixed this because Firecrawl verifies pages are actually reachable before returning them, meaning the URL you search is the same URL the scraper can immediately fetch without hitting a 404. I still got some 404s here and there since an LLM was choosing the best URLs.
+
+### Inference Timeouts in Production
+
+After the first deployment, the scraper's cleaning step, which passed raw scraped markdown to an LLM kept timing out on large documentation pages. The Gradient inference API has a read timeout, and some documentation pages produce tens of thousands of characters of markdown that exceeded it consistently. The fix was truncating the raw markdown to about 12000 characters (~3000 tokens) before parsing it to the LLM.
+
+### DigitalOcean Spaces `InvalidArgument` on `put_object`
+
+Writing files to Spaces looked straightforward with `boto3` but produced an `InvalidArgument` error with no message body on every `put_object` call. After investigating, it turned out I was using the wrong `DO_ACCESS_KEY_ID` and `DO_SECRET_ACCESS_KEY`
+
+### SSE Didn't Work on App Platform
+
+The original real-time notification design used Server-Sent Events. The frontend connected to a `/events/stream` endpoint, the backend published events to a Redis (Valkey) pub/sub channel, and connected clients received push notifications when a project was generated. This worked perfectly in local development. In production on DigitalOcean App Platform it silently failed. I am not sure of the exact issue but after reading the documentation it was clear that I needed the CDN caching (edge cache) to be disabled to be able to use that feature. At the time, it was already too late to rearrange my architecture as both my frontend and backend are components of the same app on App platform. I eventually replaced SSE entirely with client-side polling. The frontend polls `GET /projects` every 10 seconds using a `setInterval`. When the projects list grows during an active generation, Zustand state detects the new entry, stops the loading state, resets the form, and fires a toast notification with the site URL.
+
+### The Private Database Hostname
+
+When deploying the backend to App Platform, the database connection string used the `private-` prefixed hostname from DigitalOcean's managed database. Private hostnames only resolve within the same DigitalOcean VPC — and the backend wasn't properly configured as a trusted source of the database cluster. The connection timed out with `psycopg2.OperationalError`. The fix was to add a `digitalocean_database_firewall` resource in Terraform with `type = "app"` pointing at the App Platform app ID, and to pass `private_host` from the database cluster resource into the backend's `DATABASE_URL` environment variable. I still kept getting errors and switched to using the database's public URL.
+
+Accomplishments that I'm proud of
+
+- Built and shipped my first ever application integrated with AI end to end
+- Designed and implemented a working 5-node multi-agent pipeline that runs autonomously from a single GitHub URL to a live hosted documentation site
+- Integrated four DigitalOcean services. Gradient AI, App Platform, Managed PostgreSQL, and Spaces into a single coherent production deployment managed entirely with Terraform.
+- Overcame real production issues including inference timeouts, SSE limitations on managed platforms.
+- Delivered a complete full-stack product. Agent, API, database, and frontend — within the hackathon submission window
+
+## What I learned
+
+This project provided an enormous learning surface. Across the build I encountered and worked through:
+
+- Multi-agent architecture:
+	designing a LangGraph StateGraph where each node is a pure function that takes state and returns state, making agents independently testable and the pipeline easy to reason about
+- Prompt engineering for structured output:
+	why triple-quoted strings matter, how whitespace and newlines in a prompt are structural signals the LLM uses, and why adjacent string literal concatenation silently destroys prompt formatting.
+- LLM output parsing:
+	why with_structured_output and tool calling can't be used on the same model instance simultaneously
+- Firecrawl for search and scraping:
+	using a single API for both finding URLs and fetching content, and how result caching protects against rate limits during development
+- DigitalOcean Spaces with boto3:
+	session-based client initialisation, bucket policies vs per-object ACLs, and the .nojekyll file that prevents CDN from stripping underscore-prefixed Docsify files
+- FastAPI background tasks:
+	why calling a long-running agent synchronously from an endpoint causes a deadlock when the agent needs to call back to the same server, and how BackgroundTasks solves it
+- SSE limitations on managed platforms:
+	why SSE works locally but not behind a CDN proxy, and polling
+- Terraform for DigitalOcean:
+	managing App Platform apps, managed databases, Spaces buckets, database firewalls, and VPC networking as infrastructure as code
+- Alembic vs create_all:
+	when each is appropriate and what the real cost of create_all is once you have data you can't afford to lose
+- Monorepo tooling:
+	running a Python agent, a FastAPI backend, and a Next.js frontend from a single repo with Turborepo and pnpm workspaces
+
+## What's next for KodaFlux
+
+### Real-time agent status updates
+
+The current frontend polls for project completion but has no visibility into what the pipeline is actually doing while it runs. The next iteration will push granular status events to the frontend as each agent starts and completes its task so users see "Analysing repository... Researching documentation URLs... Scraping pages... Formatting content..." rather than a single loading spinner for several minutes.
+
+### Hardened error handling
+
+Both the agent pipeline and the backend API currently handle failures silently in several places. The next version will surface meaningful errors at every stage. Failed scrapes, unreachable URLs, inference failures, and storage errors will be responded to with proper HTTP status codes from the API and structured error state in the agent graph that the frontend can act on.
+
+### Frontend modularity
+
+The current frontend is largely a single-file implementation. This will be refactored into a properly structured component hierarchy with dedicated components for the generation form, the project card, the project gallery, and the toast notification logic, making the codebase easier to extend and maintain.
+
+### Smarter model selection per task
+
+Every agent currently uses the same model regardless of task complexity. The analyst and storer don't need a large model at all. They do deterministic work. The researcher and formatter are where model quality actually matters. The next version will match model size to task. Smaller, faster models for simple tasks and larger models only where reasoning quality makes a measurable difference to output.
+
+### Redis-backed caching
+
+The current search and scrape caches write to disk, which works locally but doesn't survive container restarts in production and can't be shared across multiple agent instances. Migrating the cache layer to DigitalOcean's managed Valkey will make caching persistent, shareable, and production-grade
+
+## Tools & Technologies used:
+
+- boto3
+- Clause Web
+- DigitalOcean Agent Platform
+- DigitalOcean App Platform
+- DigitalOcean Gradient AI Inference
+- DigitalOcean Managed PostgreSQL
+- DigitalOcean Spaces
+- Docker
+- FastAPI
+- firecrawl-py
+- Gemini Web
+- GitHub
+- gradient-adk
+- langchain-core
+- langchain-gradient
+- langgraph
+- Nextjs
+- PNPM Workspaces
+- PostgreSQL
+- PyGitHub
+- Python
+- react-hook-form
+- Shadcn UI
+- sqlalchemy
+- Terraform
+- Turborepo
+- TypeScript
+- Zustand
+
+
+## Try it out
+
+[GitHub Repo](https://github.com/koda-flux/kodaflux) <br/>
+
+[kodaflux.lebophoshoko.dedyn.io](https://kodaflux.lebophoshoko.dedyn.io)
+
+You can have a look at the documentation site kodaflux generated for it's own repo [here](https://fra1.digitaloceanspaces.com/kodaflux-assets/kodaflux/index.html)
